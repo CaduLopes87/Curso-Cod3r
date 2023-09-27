@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+    <title>Listas Aninhadas</title>
+</head>
+<body>
+    <h1>Projeto</h1>
+
+    <ul class="tree">
+        <li>
+            <a href id="botao-backend" wm-folder>Backend</a>
+            <ul id="pasta-backend">
+                <li>
+                    <a href id="botao-app" wm-folder>app</a>
+                    <ul id="arquivos-app">
+                        <li>produto.js</li>
+                        <li>usuario.js</li>
+                        <li>venda.js</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href id="botao-config" wm-folder>config</a>
+                    <ul id="arquivos-config">
+                        <li>banco.js</li>
+                        <li>rotas.js</li>
+                        <li>servidor.js</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href id="botao-frontend" wm-folder>Frontend</a>
+            <ul id="pasta-frontend">
+                <li>
+                    <a href id="botao-public" wm-folder>public</a>
+                    <ul id="arquivos-public">
+                        <li >app.css</li>
+                        <li>app.js</li>
+                        <li>index.html</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+
+    // === Forma que consegui fazer === 
+
+        // const botBackend = document.getElementById('botao-backend');
+        // const botApp = document.getElementById('botao-app');
+        // const botConfig = document.getElementById('botao-config');
+        // const botFrontend = document.getElementById('botao-frontend');
+        // const botPublic = document.getElementById('botao-public');
+
+        // const pastaBackend = document.getElementById('pasta-backend');
+        // const arquivosApp = document.getElementById('arquivos-app');
+        // const arquivosConfig = document.getElementById('arquivos-config');
+        // const pastaFrontend = document.getElementById('pasta-frontend');
+        // const arquivosPublic = document.getElementById('arquivos-public');
+
+        // botBackend.onclick = (e) => {
+        //     e.preventDefault();
+
+        //     pastaBackend.toggleAttribute("hidden");
+        // }
+        // botApp.onclick = (e) => {
+        //     e.preventDefault();
+
+        //     arquivosApp.toggleAttribute("hidden");
+        // }
+        // botConfig.onclick = (e) => {
+        //     e.preventDefault();
+
+        //     arquivosConfig.toggleAttribute("hidden");
+        // }
+        // botFrontend.onclick = (e) => {
+        //     e.preventDefault();
+
+        //     pastaFrontend.toggleAttribute("hidden");
+        // }
+        // botPublic.onclick = (e) => {
+        //     e.preventDefault();
+
+        //     arquivosPublic.toggleAttribute("hidden");
+        // }
+
+    // === Resolução do Curso com adaptações minhas ===
+
+            document.querySelectorAll('[wm-folder]').forEach(folder => {
+                folder.onclick = (e) => {
+                    e.preventDefault();
+                    const ul = folder.nextElementSibling
+
+                    ul.toggleAttribute("hidden");
+                }
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Imagens:</h1>
+
+    <div wm-slider id="slider">
+        <p wm-imagens>
+            <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" 
+            alt="Muro da Cidade"
+            width="513" height="342">
+        </p>
+        <p wm-imagens>
+            <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" 
+            alt="Introdução da Cod3r">
+        </p>
+        <p m-imagens>
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" 
+        alt="Morro do Rio de Janeiro" height="342">
+        </p>
+        <p wm-imagens class="texto">
+            <img src="http://files.cod3r.com.br/curso-web/avatar.jpg"
+                alt="Avatar" height="58" align="left">
+                Texto alçkfjhasdfhdaçsldkhfas
+                sad sadfkajsg asasfdg aagsfgdfgad
+                sagafhad a dfhadh hdaah dfh dfhadhafg
+                adfh ad hadhad had hadhhadgha dhad 
+                ad gadf gadhadfh adadgafg sdfgadfgadfh
+                ddafhadjhdg adsfgafd gadfgasfga afgfadfhj.
+            </p>
+        <p class="cidade" wm-imagens>
+            
+        </p>
+        <p wm-imagens>
+            <picture>        
+                <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png"
+                media="(min-width: 600px)">
+                <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo Estreita">
+            </picture>
+        </p>
+    </div>
+    
+    <style>
+        p {
+            position: absolute;
+            display: none;
+        }
+        .circular {
+            width: 513px;
+            background-color: #444;
+        }
+        .texto {
+            align-items: left;
+            width: 400px;
+        }
+        .texto img {
+            margin-right: 10px;
+        }
+        .cidade {
+            width: 513px;
+            height: 342px;
+            background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 200%;
+        }
+    </style>
+
+    <script>
+
+        const slider = () => {
+            const elementos = document.querySelectorAll('[wm-imagens]')
+            const slides = Array.from(elementos);
+            exibirSlides(slides, slides[0]);
+        }
+
+        const deslizarImagem = (elem, inicio, fim, passo, callback) => {
+            const novoInicio = inicio - passo;
+
+            if(novoInicio >= fim){
+                elem.style.left = novoInicio + 'px'
+                setTimeout(() => deslizarImagem(elem, novoInicio, fim, passo, callback), 0.01)
+            } else {
+                callback()
+            }
+        }
+
+        function exibirSlides(slides, slide) {
+            slide.style.display = 'block'
+
+            const inicio = innerWidth;
+            const fim = -slide.clientWidth;
+
+            slide.style.left = `${inicio}px`
+
+            deslizarImagem(slide, inicio, fim, 1, () => {
+                slide.style.display = 'none'
+                exibirSlides(slides, getProximo(slides, slide))
+            })
+
+        }
+
+        function getProximo(lista, atual) {
+            const i = lista.indexOf(atual) + 1
+            return i < lista.length ? lista[i] : lista[0]
+        } 
+
+        slider();
+
+    </script>
+</body>
+</html>

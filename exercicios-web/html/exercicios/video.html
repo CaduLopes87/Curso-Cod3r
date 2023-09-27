@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeo</title>
+</head>
+<body>
+    <h1>Vídeo:</h1>
+    <video id="meuVideo" width="800" height="450" controls autoplay controlsList="nodownload">
+        <source src="http://files.cod3r.com.br/curso-web/video.mp4">
+        Seu browser não suporta a tag de vídeo
+    </video>
+    <div id="barra-progresso" wm-progresso="meuVideo" class="progresso">
+        <div id="tempo-video">1:00</div>
+    </div>
+
+    <div>
+        <button id="play" wm-play="meuVideo">Play</button>
+        <button id="pause" wm-pause="meuVideo">Pause</button>
+    </div>
+
+    <style>
+        .progresso {
+            height: 20px;
+            width: 500px;
+            border: solid 2px #444;
+            margin: 20px;
+        }
+
+        .progresso > div {
+            background-color: red;
+            color: white;
+            height: 100%;
+            text-align: right;
+            font-size: 14px;
+            width: 30%;
+        }
+
+        #play {
+            margin-left: 20px;
+        }
+
+        button {
+            margin-left: 5px;
+        }
+    </style>
+
+    <script>
+        const video = document.getElementById('meuVideo');
+        const barraDeProgresso = document.getElementById("tempo-video");
+        const botaoPlay = document.getElementById("play");
+        const botaoPause = document.getElementById('pause');
+
+       setInterval(() => {
+            const relacaoProgresso = ((video.currentTime/video.duration)* 100);
+            
+            barraDeProgresso.style.width = `${relacaoProgresso}%`
+            barraDeProgresso.innerHTML = `${video.currentTime.toFixed(1)}s`;
+        }, 500)
+
+        botaoPlay.onclick = (e) => {
+            e.preventDefault();
+            video.play();
+        }
+        botaoPause.onclick = (e) => {
+            e.preventDefault();
+            video.pause();
+        }
+    </script>
+</body>
+</html>
